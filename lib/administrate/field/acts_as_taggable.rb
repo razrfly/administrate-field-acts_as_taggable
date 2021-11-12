@@ -49,12 +49,18 @@ module Administrate
         delimitted.to_s[0...truncation_length]
       end
 
-      def tag_options
+#      def tag_options
+#        return [] unless defined? ActsAsTaggableOn::Tag
+#
+#        ActsAsTaggableOn::Tag.for_context(context).order(:name).map do |t|
+#          { text: t.name, value: t.name }
+#        end
+#      end
+
+      def associated_resource_options
         return [] unless defined? ActsAsTaggableOn::Tag
 
-        ActsAsTaggableOn::Tag.for_context(context).order(:name).map do |t|
-          { text: t.name, value: t.name }
-        end
+        ActsAsTaggableOn::Tag.for_context(context).order(:name).map(&:name)
       end
     end
   end
