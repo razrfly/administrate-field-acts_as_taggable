@@ -9,6 +9,13 @@ module Administrate
         if defined?(Administrate::Engine)
           Administrate::Engine.add_javascript 'administrate-field-taggable/application'
           Administrate::Engine.add_stylesheet 'administrate-field-taggable/application'
+
+          initializer "administrate-field-taggable.assets.precompile" do |app|
+            app.config.assets.precompile += [
+              "administrate-field-taggable/application.js",
+              "administrate-field-taggable/application.css",
+            ]
+          end
         end
       end
 
